@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="anchor" stylesheets="@home_design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.studijska_oprema.Login">
+   <children>
+      <AnchorPane layoutX="356.0" prefHeight="500.0" prefWidth="444.0" stylesheets="@home_design.css">
+         <styleClass>
+            <String fx:value="white-bg" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <children>
+            <TextField layoutX="135.0" layoutY="106.0" prefHeight="33.0" prefWidth="200.0" promptText="Vnesite ime" styleClass="textfield" stylesheets="@home_design.css">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+            </TextField>
+            <PasswordField layoutX="137.0" layoutY="317.0" prefHeight="33.0" prefWidth="200.0" promptText="Vnesite geslo" styleClass="textfield" stylesheets="@home_design.css">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+            </PasswordField>
+            <Text layoutX="134.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registracija">
+               <font>
+                  <Font name="Bodoni MT" size="40.0" />
+               </font>
+            </Text>
+            <Button layoutX="136.0" layoutY="409.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" styleClass="signin-btn" stylesheets="@home_design.css" text="Vpiši se">
+               <font>
+                  <Font name="Bodoni MT" size="15.0" />
+               </font>
+            </Button>
+            <Hyperlink layoutX="268.0" layoutY="459.0" text="Vpiši se!">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+            </Hyperlink>
+            <Text layoutX="166.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ste se že registrirali?">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+            </Text>
+            <TextField layoutX="135.0" layoutY="149.0" prefHeight="33.0" prefWidth="200.0" promptText="Vnesite priimek" styleClass="textfield" stylesheets="@home_design.css">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="135.0" layoutY="192.0" prefHeight="33.0" prefWidth="200.0" promptText="Vnesite e-pošto" styleClass="textfield" stylesheets="@home_design.css">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+            </TextField>
+            <TextField layoutX="135.0" layoutY="235.0" prefHeight="33.0" prefWidth="200.0" promptText="Vnesite uporabniško ime" styleClass="textfield" stylesheets="@home_design.css">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+            </TextField>
+            <PasswordField layoutX="136.0" layoutY="359.0" prefHeight="33.0" prefWidth="200.0" promptText="Ponovite geslo" styleClass="textfield" stylesheets="@home_design.css">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+            </PasswordField>
+            <ChoiceBox layoutX="135.0" layoutY="275.0" prefHeight="33.0" prefWidth="200.0" styleClass="combo-box" stylesheets="@home_design.css" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="295.0" fitWidth="336.0" layoutX="79.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../Downloads/My%20project.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="58.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Izposoja opreme" wrappingWidth="209.556640625">
+         <font>
+            <Font name="Bodoni MT" size="42.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
