@@ -50,6 +50,7 @@
     -fx-border-width: .8px;
     -fx-border-radius: .5px;
     -fx-font-size: 13px;
+    -fx-font-family: "Tahoma";
 }
 
 .combo-box:focused{
@@ -159,4 +160,9 @@
 
 .signin-btn:hover{
     -fx-background-color:#cdf7f2;
+}
+
+.label
+{
+    -fx-font-family: "Tahoma";
 }

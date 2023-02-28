@@ -16,10 +16,11 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws IOException {
         stg = primaryStage;
         primaryStage.setResizable(false);
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml")); //Napišeš katera stran se prva odpre ob zagonu aplikacije.
+        Parent root = FXMLLoader.load(getClass().getResource("login.fxml")); //Napišeš katera stran se prva odpre ob zagonu aplikacije.
         primaryStage.setTitle("StudioRent"); //Naslov
-        primaryStage.setScene(new Scene(root, 377, 570)); //Določiš višino in širino
+        primaryStage.setScene(new Scene(root, 800, 500)); //Določiš višino in širino
         primaryStage.show();
+
     }
 
     public static void changeScene(String fxml,Integer sirina,Integer visina) throws IOException { //Funkcija ki spremeni stran v aplikaciji.
