@@ -44,7 +44,7 @@ public class Baza {
 //                        String tel_st = resultSet.getString("tel_st");
 //                        String eposta = resultSet.getString("eposta");
 
-                        Main.changeScene("home-page.fxml",800,500);
+                        Main.changeScene("homepage.fxml",900,600);
 
                     } else {
                         System.out.println("Geslo se ne ujema!");
@@ -121,7 +121,7 @@ public class Baza {
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setContentText("Uporabnik uspešno ustvarjen!");
                 alert.show();
-                Main.changeScene("home-page.fxml",829,451); //Preusmeritev
+                Main.changeScene("homepage.fxml",900,600); //Preusmeritev
             }
         } catch (SQLException | IOException e)
         {

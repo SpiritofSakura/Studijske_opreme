@@ -4,6 +4,7 @@ module com.example.studijske_opreme {
     requires java.sql;
     requires AnimateFX;
     requires java.mail;
+    requires com.jfoenix;
 
 
     opens com.example.studijske_opreme to javafx.fxml;

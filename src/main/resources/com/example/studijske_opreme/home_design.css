@@ -21,10 +21,26 @@
     -fx-background-color:#8c84ff;
 }
 
+.white-bg-klasik {
+    -fx-background-color: #fff;
+    -fx-background-radius: 15px;
+}
+
 .white-bg{
     -fx-background-color: #fff;
     -fx-background-radius: 30 0 0 30;
 }
+
+.white-bg3{
+    -fx-background-color: #8bcac2;
+    -fx-background-radius: 0 15 15 0;
+}
+
+.white-bg2{
+    -fx-background-color: #8bcac2;
+    -fx-background-radius: 15px;
+}
+
 
 .shadow{
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 4,0,0,0);
@@ -166,3 +182,8 @@
 {
     -fx-font-family: "Tahoma";
 }
+
+.home-page{
+    -fx-background-color: linear-gradient(to top right, #fffffe, #8bcac2);
+}
+
