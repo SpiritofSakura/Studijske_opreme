@@ -5,13 +5,13 @@ import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+import javafx.fxml.Initializable; 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
-
+//js ful sovrazim crnce
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
