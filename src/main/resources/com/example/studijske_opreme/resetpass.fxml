@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="anchor" stylesheets="@home_design.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.studijske_opreme.ResetPass">
+   <children>
+      <AnchorPane layoutX="356.0" prefHeight="500.0" prefWidth="444.0" stylesheets="@home_design.css">
+         <styleClass>
+            <String fx:value="white-bg" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <children>
+            <TextField fx:id="text_eposta" layoutX="135.0" layoutY="151.0" prefHeight="33.0" prefWidth="200.0" promptText="Vnesite epošto" styleClass="textfield" stylesheets="@home_design.css">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font></TextField>
+            <Text layoutX="67.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprememnitev gesla">
+               <font>
+                  <Font name="Bodoni MT" size="40.0" />
+               </font>
+            </Text>
+            <Button fx:id="btnspremeni" disable="true" layoutX="135.0" layoutY="386.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" styleClass="signin-btn" stylesheets="@home_design.css" text="Spremeni geslo">
+               <font>
+                  <Font name="Bodoni MT" size="15.0" />
+               </font></Button>
+            <Label fx:id="napacniPodatki" layoutX="135.0" layoutY="190.0" prefHeight="17.0" prefWidth="200.0" textFill="RED">
+               <font>
+                  <Font name="Bodoni MT" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="napacniPodatki1" layoutX="135.0" layoutY="360.0" prefHeight="17.0" prefWidth="200.0" textFill="RED">
+               <font>
+                  <Font name="Bodoni MT" size="13.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnkoda" layoutX="135.0" layoutY="217.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" styleClass="signin-btn" stylesheets="@home_design.css" text="Pošlji kodo">
+               <font>
+                  <Font name="Bodoni MT" size="15.0" />
+               </font>
+            </Button>
+            <TextField fx:id="text_koda" disable="true" layoutX="135.0" layoutY="321.0" prefHeight="33.0" prefWidth="200.0" promptText="Vnesite kodo" styleClass="textfield" stylesheets="@home_design.css">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+            </TextField>
+            <Label fx:id="error" layoutX="135.0" layoutY="444.0" prefHeight="17.0" prefWidth="178.0" textFill="#71d7c6">
+               <font>
+                  <Font name="Bodoni MT" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="reset" layoutX="135.0" layoutY="445.0" prefHeight="17.0" prefWidth="200.0" textFill="#2dc6b4">
+               <font>
+                  <Font name="Bodoni MT" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="295.0" fitWidth="336.0" layoutX="79.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="58.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Izposoja opreme" wrappingWidth="209.556640625">
+         <font>
+            <Font name="Bodoni MT" size="42.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
