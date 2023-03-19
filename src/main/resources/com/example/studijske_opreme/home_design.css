@@ -129,12 +129,12 @@
 .table-view {
     -fx-background-color: transparent;
     -fx-padding: 0px;
-    -fx-border-color: linear-gradient(to bottom right, #2f3f89, #9231b5);
-    -fx-border-radius: 8px;
+    -fx-border-color: linear-gradient(to bottom right, #638dd7, #8bcac2);
+    -fx-border-radius: 5 5 15 15;
 
 }
 .table-view .column-header-background{
-    -fx-background-color: linear-gradient(to bottom right, #2f3f89, #9231b5);
+    -fx-background-color: linear-gradient(to top right, #638dd7, #8bcac2);
     -fx-background-insets: 0 0 0 0;
 
 }
@@ -145,6 +145,7 @@
 
 }
 
+
 .table-view .column-header .label {
     -fx-text-fill: white ;
 }
@@ -153,7 +154,7 @@
 .search{
     -fx-background-color: transparent;
     -fx-background-radius: 15px;
-    -fx-border-color: linear-gradient(to bottom right, #2f3f89, #9231b5);
+    -fx-border-color: linear-gradient(to bottom right, #0077ff, #8bcac2);
     -fx-border-radius: 5px 12px 5px 15px;
     -fx-border-width: 1px;
     -fx-padding: 0px 0px  0px 25px;
@@ -180,7 +181,7 @@
 
 .label
 {
-    -fx-font-family: "Tahoma";
+    -fx-font-family: "Bodoni MT";
 }
 
 .home-page{

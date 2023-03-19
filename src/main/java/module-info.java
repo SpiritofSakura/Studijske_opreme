@@ -5,6 +5,9 @@ module com.example.studijske_opreme {
     requires AnimateFX;
     requires java.mail;
     requires com.jfoenix;
+    requires java.desktop;
+    requires apache.commons.net;
+    requires javafx.swing;
 
 
     opens com.example.studijske_opreme to javafx.fxml;

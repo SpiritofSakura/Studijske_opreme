@@ -1,20 +1,24 @@
 package com.example.studijske_opreme;
 
-import javafx.event.ActionEvent;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 
-import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class Baza {
 
 
+    public static Integer studio_id;
+    public static ObservableList<Opreme> list_iskanje = null;
     public static void Prijava(String username, String geslo)
     {
         Connection connection = null;
@@ -23,7 +27,7 @@ public class Baza {
         //Ucitelj ucitelj;
         try{
             connection = DriverManager.getConnection("jdbc:postgresql://trumpet.db.elephantsql.com/iwlqnlkp","iwlqnlkp","4d4ciVVucqCHoPNGX6kvzHghAt0QajIq");
-            stmt = connection.prepareStatement("SELECT username,pass FROM uporabniki WHERE username = ?");
+            stmt = connection.prepareStatement("SELECT studio_id,username,pass FROM uporabniki WHERE username = ?");
             stmt.setString(1,username);
             resultSet = stmt.executeQuery();
 
@@ -38,12 +42,8 @@ public class Baza {
                     //Še pridobiš vse ostale parametre...
                     //..
                     if (pridobljeno_geslo.equals(geslo)) {
-//                        String ime = resultSet.getString("ime"); <--- Bo shranilo njegove podatke v nek objekt da se izpišejo dokončaj
-//                        String priimek = resultSet.getString("priimek");
-//                        String uporabnik = resultSet.getString("username");
-//                        String tel_st = resultSet.getString("tel_st");
-//                        String eposta = resultSet.getString("eposta");
-
+                        Integer st_id = resultSet.getInt("studio_id"); //<--- Bo shranilo njegove podatke v nek objekt da se izpišejo dokončaj
+                        Baza.studio_id = st_id; //zabeležu studio_id;
                         Main.changeScene("homepage.fxml",900,600);
 
                     } else {
@@ -97,14 +97,16 @@ public class Baza {
         try {
 
             connection = DriverManager.getConnection("jdbc:postgresql://trumpet.db.elephantsql.com/iwlqnlkp","iwlqnlkp","4d4ciVVucqCHoPNGX6kvzHghAt0QajIq");
-            check = connection.prepareStatement("SELECT username FROM uporabniki WHERE username = ?");
+            check = connection.prepareStatement("SELECT username,eposta FROM uporabniki WHERE username = ? OR eposta = ?");
             check.setString(1,username);
+            check.setString(2,eposta);
             resultSet = check.executeQuery();
+
 
             if (resultSet.isBeforeFirst()) { //Če uporabnik že obstaja
                 System.out.println("Uporabnik že obstaja.");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Ne moraš uporabiti tega uporabniškega gesla, ker že obstaja.");
+                alert.setContentText("Ne moraš uporabiti tega uporabniškega gesla oz epoštnega računa ker že obstaja, ker že obstaja.");
                 alert.show();
             }
             else {
@@ -116,12 +118,30 @@ public class Baza {
                 psInsert.setString(5,eposta);
                 psInsert.setString(6,ime_s);
 
+
+
                 psInsert.execute();
-                //ucitelj = new Ucitelj(ime,priimek,eposta,telefon,username);
+
+
+//                PreparedStatement stmt = null;
+//                ResultSet resultSet1 = null;
+//
+//                stmt = connection.prepareStatement("SELECT studio_id FROM studiji WHERE ime = ?");
+//                stmt.setString(1,ime_s);
+//                resultSet1 = stmt.executeQuery();
+//
+//                while(resultSet1.next()){
+//                    Integer st_id = resultSet.getInt("studio_id"); //<--- Bo shranilo njegove podatke v nek objekt da se izpišejo dokončaj
+//                    Baza.studio_id = st_id;
+//                }
+//                resultSet1.close();
+//                stmt.close();
+
+
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setContentText("Uporabnik uspešno ustvarjen!");
                 alert.show();
-                Main.changeScene("homepage.fxml",900,600); //Preusmeritev
+                Main.changeScene("login.fxml",800,500); //Preusmeritev
             }
         } catch (SQLException | IOException e)
         {
@@ -392,6 +412,523 @@ public class Baza {
             }
 
     }
+
+
+
+    public static void  napolniOpremo(Integer s_id, TableView<Opreme> tabela) {
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        Opreme oprema;
+        ObservableList<Opreme> list = FXCollections.observableArrayList();
+
+
+        try{
+
+            connection = DriverManager.getConnection("jdbc:postgresql://trumpet.db.elephantsql.com/iwlqnlkp","iwlqnlkp","4d4ciVVucqCHoPNGX6kvzHghAt0QajIq");
+            stmt = connection.prepareStatement("SELECT o.id,o.oznaka,o.ime as ime,o.opis,v.ime as vrsta FROM oprema o INNER JOIN vrsta v ON v.id = o.vrsta_id INNER JOIN studiji s on s.id = o.studio_id WHERE s.id = ?");
+            stmt.setInt(1, s_id);
+
+            resultSet = stmt.executeQuery();
+
+            while (resultSet.next()) {
+                Integer id = (resultSet.getInt("id"));
+                String oznaka = resultSet.getString("oznaka");
+                String ime = resultSet.getString("ime");
+                String opis = resultSet.getString("opis");
+                String vrsta = resultSet.getString("vrsta");
+
+                oprema = new Opreme(id,oznaka,ime,opis,vrsta);
+                list.add(oprema);
+
+
+
+            }
+            if(list.isEmpty())
+            {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("POZOR: Ta studijo nima še nobene opreme.");
+                alert.show();
+            }
+            else
+            {
+                list_iskanje = list;
+                tabela.setItems(list);
+            }
+
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        finally {
+            if (resultSet != null)
+            {
+                try {
+                    resultSet.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (stmt != null)
+            {
+                try {
+                    stmt.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null)
+            {
+                try {
+                    connection.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
+
+    public static void dodajOpremo(String text_ime, String text_vrsta,String text_opis, String text_oznaka,Integer s_id,File img) throws FileNotFoundException {
+        Connection connection = null;
+        PreparedStatement psInsert = null;
+        PreparedStatement check = null;
+        ResultSet resultSet = null;
+
+
+        try {
+
+            connection = DriverManager.getConnection("jdbc:postgresql://trumpet.db.elephantsql.com/iwlqnlkp","iwlqnlkp","4d4ciVVucqCHoPNGX6kvzHghAt0QajIq");
+            check = connection.prepareStatement("SELECT oznaka FROM oprema WHERE oznaka = ?");
+            check.setString(1,text_oznaka);
+            resultSet = check.executeQuery();
+
+            if (resultSet.isBeforeFirst()) { //Če uporabnik že obstaja
+                System.out.println("Ta oznaka že obstaja!");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Ne moraš uporabiti te oznake za vašo novo opremo, ker že obstaja. Prosim vnesite novo");
+                alert.show();
+            }
+            else {
+                try (FileInputStream slika = new FileInputStream(img)) {
+
+
+                    psInsert = connection.prepareStatement("INSERT INTO oprema(oznaka,ime,opis,studio_id,vrsta_id,slika) VALUES(?,?,?,?,(select id from vrsta where ime = ?),?)"); //Vstavljanje uporabnikov
+                    psInsert.setString(1, text_oznaka);
+                    psInsert.setString(2, text_ime);
+                    psInsert.setString(3, text_opis);
+                    psInsert.setInt(4, s_id);
+                    psInsert.setString(5, text_vrsta);
+                    psInsert.setBinaryStream(6, slika,(int) img.length());
+
+                    psInsert.execute();
+                }catch (Exception e)
+                {
+                    System.out.println(e.toString());
+                }
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setContentText("Oprema uspešno ustvarjena!");
+                alert.show();
+
+            }
+        } catch (SQLException e)
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(e.toString());
+            alert.show();
+        }
+        finally {
+            if (resultSet != null)
+            {
+                try {
+                    resultSet.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }                                                                       //Pravilno zapiranje povezave na varen nacin.
+            }
+            if (check != null)
+            {
+                try {
+                    check.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (psInsert != null)
+            {
+                try {
+                    psInsert.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null)
+            {
+                try {
+                    connection.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
+    public static void  posodobiOpremo(Integer o_id,String text_ime, String text_oznaka, String text_vrsta, String text_opis, Integer st_id,File slika) {
+        Connection connection = null;
+        PreparedStatement stmt = null;
+
+
+
+
+        try{
+
+            connection = DriverManager.getConnection("jdbc:postgresql://trumpet.db.elephantsql.com/iwlqnlkp","iwlqnlkp","4d4ciVVucqCHoPNGX6kvzHghAt0QajIq");
+            stmt = connection.prepareStatement("UPDATE oprema SET id = ?,oznaka = ?, ime = ?, opis = ?, studio_id = ?, vrsta_id = (select id from vrsta where ime = ?),slika = ? WHERE id = ?");
+            try (FileInputStream img = new FileInputStream(slika)) {
+                stmt.setInt(1, o_id);
+                stmt.setString(2, text_oznaka);
+                stmt.setString(3, text_ime);
+                stmt.setString(4, text_opis);
+                stmt.setInt(5, st_id);
+                stmt.setString(6, text_vrsta);
+                stmt.setBinaryStream(7,img,(int) slika.length());
+                stmt.setInt(8, o_id);
+
+
+                stmt.execute();
+            }catch (Exception e)
+            {
+                System.out.println(e.toString());
+            }
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("Oprema je bila uspešno posodobljena");
+            alert.show();
+
+
+        }catch (SQLException e){
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(e.toString());
+            alert.show();
+        }
+        finally {
+
+            if (stmt != null)
+            {
+                try {
+                    stmt.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null)
+            {
+                try {
+                    connection.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
+
+    public static void  izbrisiOpremo(Integer o_id) {
+        Connection connection = null;
+        PreparedStatement stmt = null;
+
+
+
+
+        try{
+
+            connection = DriverManager.getConnection("jdbc:postgresql://trumpet.db.elephantsql.com/iwlqnlkp","iwlqnlkp","4d4ciVVucqCHoPNGX6kvzHghAt0QajIq");
+            stmt = connection.prepareStatement("DELETE FROM oprema WHERE id = ?");
+            stmt.setInt(1, o_id);
+
+            stmt.execute();
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("Oprema je bila uspešno izbrisana");
+            alert.show();
+
+
+        }catch (SQLException e){
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(e.toString());
+            alert.show();
+        }
+        finally {
+            if (stmt != null)
+            {
+                try {
+                    stmt.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null)
+            {
+                try {
+                    connection.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
+    public static void  napolniVrsto(ComboBox combo_vrsta) {
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+
+
+        try{
+            connection = DriverManager.getConnection("jdbc:postgresql://trumpet.db.elephantsql.com/iwlqnlkp","iwlqnlkp","4d4ciVVucqCHoPNGX6kvzHghAt0QajIq");
+            stmt = connection.prepareStatement("SELECT ime FROM vrsta");
+
+            resultSet = stmt.executeQuery();
+
+            while (resultSet.next()) {
+                String vrsta = resultSet.getString("ime");
+                combo_vrsta.getItems().add(vrsta);
+            }
+
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        finally {
+            if (resultSet != null)
+            {
+                try {
+                    resultSet.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (stmt != null)
+            {
+                try {
+                    stmt.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null)
+            {
+                try {
+                    connection.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
+    public static void dodajVrsto(String vrsta,String opis)
+    {
+        Connection connection = null;
+        PreparedStatement psInsert = null;
+        PreparedStatement check = null;
+        ResultSet resultSet = null;
+        //Ucitelj ucitelj;
+
+        try {
+
+            connection = DriverManager.getConnection("jdbc:postgresql://trumpet.db.elephantsql.com/iwlqnlkp","iwlqnlkp","4d4ciVVucqCHoPNGX6kvzHghAt0QajIq");
+            check = connection.prepareStatement("SELECT ime FROM vrsta WHERE ime = ?");
+            check.setString(1,vrsta);
+            resultSet = check.executeQuery();
+
+            if (resultSet.isBeforeFirst()) { //Če uporabnik že obstaja
+                System.out.println("Vrsta že obstaja");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Ne moraš uporabiti tega imena za vrsto, ker že obstaja.");
+                alert.show();
+            }
+            else {
+                psInsert = connection.prepareStatement("INSERT INTO vrsta(ime,opis) VALUES(?,?)"); //Vstavljanje uporabnikov
+                psInsert.setString(1,vrsta);
+                psInsert.setString(2,opis);
+
+
+
+                psInsert.execute();
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setContentText("Vrsta uspešno dodana!");
+                alert.show();
+                Main.changeScene("homepage.fxml",900,600); //Preusmeritev
+            }
+        } catch (SQLException | IOException e)
+        {
+            e.printStackTrace();
+        }
+        finally {
+            if (resultSet != null)
+            {
+                try {
+                    resultSet.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }                                                                       //Pravilno zapiranje povezave na varen nacin.
+            }
+            if (check != null)
+            {
+                try {
+                    check.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (psInsert != null)
+            {
+                try {
+                    psInsert.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null)
+            {
+                try {
+                    connection.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
+    public static void  spremeniGeslo(String g,String posta) {
+        Connection connection = null;
+        PreparedStatement stmt = null;
+
+        try{
+
+            connection = DriverManager.getConnection("jdbc:postgresql://trumpet.db.elephantsql.com/iwlqnlkp","iwlqnlkp","4d4ciVVucqCHoPNGX6kvzHghAt0QajIq");
+            stmt = connection.prepareStatement("UPDATE uporabniki SET geslo = ? WHERE eposta = ?");
+            stmt.setString(1, g);
+            stmt.setString(2, posta);
+
+            stmt.execute();
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setContentText("Geslo je bilo uspešno posodobljeno!");
+            alert.show();
+            Main.changeScene("login.fxml",800,500);
+
+
+        }catch (SQLException e){
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText(e.toString());
+            alert.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } finally {
+
+            if (stmt != null)
+            {
+                try {
+                    stmt.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null)
+            {
+                try {
+                    connection.close();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+
+
+    public static void UvoziSliko(File img,Integer  s_id) throws SQLException {
+        Connection connection = null;
+        PreparedStatement stmt = null;
+
+
+        try {
+
+            connection = DriverManager.getConnection("jdbc:postgresql://trumpet.db.elephantsql.com/iwlqnlkp","iwlqnlkp","4d4ciVVucqCHoPNGX6kvzHghAt0QajIq");
+            stmt = connection.prepareStatement("UPDATE oprema SET slika = ? WHERE id = ?");
+            try(FileInputStream slika = new FileInputStream(img))
+            {
+                stmt.setBinaryStream(1, slika,(int) img.length());
+                stmt.setInt(2, s_id);
+                stmt.executeUpdate();
+            } catch (IOException ex) {
+                System.out.println(ex.toString());
+            }
+
+            stmt.close();
+            connection.close();
+            System.out.println("Success!");
+
+        } catch (Exception e1) {
+            System.out.println(e1.toString());
+            e1.printStackTrace();
+            stmt.close();
+            connection.close();
+        }
+
+    }
+
+
+    public static BufferedImage DobiSliko(Integer o_id)
+    {
+        Connection connection = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        BufferedImage slika = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:postgresql://trumpet.db.elephantsql.com/iwlqnlkp","iwlqnlkp","4d4ciVVucqCHoPNGX6kvzHghAt0QajIq");
+            stmt = connection.prepareStatement("SELECT slika FROM oprema WHERE id = ?");
+            stmt.setInt(1,o_id);
+            resultSet = stmt.executeQuery();
+
+            if (resultSet.next()) {
+
+
+                byte[] buf = resultSet.getBytes("slika");
+                if (buf != null) {
+                    ByteArrayInputStream bis = new ByteArrayInputStream(buf);
+                    slika = ImageIO.read(bis);
+                }
+            }
+
+            stmt.close();
+            resultSet.close();
+            connection.close();
+            System.out.println("Succenss!");
+
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                /* Ignored */ }
+        }
+        return slika;
+    }
+
 
 
 }

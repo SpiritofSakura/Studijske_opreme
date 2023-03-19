@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -29,10 +30,14 @@ public class ResetPass implements Initializable {
     @FXML
     private Label napacniPodatki1,reset,stevilke;
 
+    @FXML
+    private Hyperlink home;
+
 
 
     private Integer koda = null;
     private boolean check;
+    public static String email;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -59,7 +64,7 @@ public class ResetPass implements Initializable {
                         else
                         {
 
-
+                            email = text_eposta.getText();
                             Random rand = new Random();
 
                             koda = rand.nextInt(999999);
@@ -90,7 +95,7 @@ public class ResetPass implements Initializable {
                 if(koda.toString().equals(text_koda.getText()))
                 {
                     try {
-                        Main.changeScene("home-page.fxml",800,500);
+                        Main.changeScene(".fxml",800,500);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
@@ -99,6 +104,17 @@ public class ResetPass implements Initializable {
                 {
                     napacniPodatki1.setText("Napacna koda!");
                     new animatefx.animation.Shake(text_koda).play();
+                }
+            }
+        });
+
+        home.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    Main.changeScene("login.fxml",800,500);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });
