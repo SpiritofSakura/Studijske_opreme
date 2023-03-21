@@ -1,19 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import java.lang.String?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="home-page" stylesheets="@home_design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.studijske_opreme.Homepage">
+<AnchorPane fx:id="aktivno_form" prefHeight="600.0" prefWidth="900.0" styleClass="home-page" stylesheets="@home_design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.studijske_opreme.Homepage">
    <children>
       <AnchorPane fx:id="domov_pane" layoutX="72.0" layoutY="6.0" prefHeight="588.0" prefWidth="822.0">
          <children>
-            <Label text="Domov" />
+            <AnchorPane layoutX="20.0" layoutY="32.0" prefHeight="532.0" prefWidth="178.0" stylesheets="@home_design.css">
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg-klasik" />
+               </styleClass>
+               <children>
+                  <FontAwesomeIconView fill="#8bcac2" glyphName="USER" layoutX="53.0" layoutY="120.0" size="100" />
+                  <Label layoutX="41.0" layoutY="147.0" text="Pozdravljeni," textFill="#8bcac2">
+                     <font>
+                        <Font name="Bodoni MT" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="user_lbl" alignment="CENTER" layoutX="4.0" layoutY="170.0" prefHeight="35.0" prefWidth="171.0" text="User" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="29.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="51.0" layoutY="382.0" text="Vaš studio:" textFill="#8bcac2">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="studio_lbl" alignment="CENTER" layoutX="3.0" layoutY="407.0" prefHeight="21.0" prefWidth="171.0" text="Studio user" textAlignment="CENTER">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="233.0" layoutY="32.0" prefHeight="200.0" prefWidth="556.0" stylesheets="@home_design.css">
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg-klasik" />
+               </styleClass>
+               <children>
+                  <AnchorPane layoutX="24.0" layoutY="20.0" prefHeight="153.0" prefWidth="237.0" style="-fx-background-color: linear-gradient(to bottom right, #8bcac2, #cdf7f2);" styleClass="white-bg2" stylesheets="@home_design.css">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="55.0" layoutX="3.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@lib/icons8-microphone-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="31.0" layoutY="107.0" text="Število kosov opreme" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="st_kosov" layoutX="109.0" layoutY="37.0" text="0">
+                           <font>
+                              <Font size="43.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="292.0" layoutY="20.0" prefHeight="153.0" prefWidth="237.0" style="-fx-background-color: linear-gradient(to bottom right, #8bcac2, #cdf7f2);" styleClass="white-bg2" stylesheets="@home_design.css">
+                     <children>
+                        <ImageView fitHeight="55.0" fitWidth="55.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@lib/icons8-user-100.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="33.0" layoutY="105.0" text="Število uporabnikov" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="st_uporabnikov" layoutX="112.0" layoutY="39.0" text="0">
+                           <font>
+                              <Font size="43.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="233.0" layoutY="264.0" prefHeight="300.0" prefWidth="556.0" stylesheets="@home_design.css">
+               <styleClass>
+                  <String fx:value="white-bg-klasik" />
+                  <String fx:value="shadow" />
+               </styleClass>
+               <children>
+                  <PieChart fx:id="pie_chart" layoutX="8.0" layoutY="7.0" prefHeight="271.0" prefWidth="542.0" stylesheets="@home_design.css" />
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="44.0" prefWidth="47.0" stylesheets="@home_design.css" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0">
@@ -58,12 +150,208 @@
       </AnchorPane>
       <AnchorPane fx:id="izposoja_pane" layoutX="72.0" layoutY="6.0" prefHeight="588.0" prefWidth="822.0" visible="false">
          <children>
-            <Label text="Izposoja" />
+            <AnchorPane layoutX="14.0" layoutY="14.0" prefHeight="223.0" prefWidth="794.0" stylesheets="@home_design.css">
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg-klasik" />
+               </styleClass>
+               <children>
+                  <AnchorPane fx:id="izposodi_pane" layoutX="14.0" layoutY="43.0" prefHeight="169.0" prefWidth="768.0">
+                     <children>
+                        <Label layoutX="26.0" layoutY="24.0" text="Oznaka:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="47.0" layoutY="72.0" text="Ime:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="358.0" layoutY="25.0" text="Opis:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="oznaka_izposoja" layoutX="84.0" layoutY="24.0" prefHeight="29.0" prefWidth="179.0" styleClass="textfield" stylesheets="@home_design.css" />
+                        <TextField fx:id="ime_izposoja" layoutX="84.0" layoutY="71.0" prefHeight="29.0" prefWidth="179.0" styleClass="textfield" stylesheets="@home_design.css" />
+                        <ComboBox fx:id="studio_izposoja" layoutX="83.0" layoutY="119.0" prefHeight="28.0" prefWidth="179.0" styleClass="combo-box" stylesheets="@home_design.css" />
+                        <Label layoutX="32.0" layoutY="121.0" text="Studio:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="287.0" layoutY="122.0" text="Datum izposoje:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="datum_izposoje" layoutX="405.0" layoutY="119.0" prefHeight="29.0" prefWidth="206.0" styleClass="textfield" stylesheets="@home_design.css" />
+                        <Button fx:id="izposodi_gumb" layoutX="651.0" layoutY="61.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="86.0" styleClass="gumb-izposoja" stylesheets="@home_design.css" text="Izposodi">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font></Button>
+                        <TextArea fx:id="opis_izposoja" layoutX="402.0" layoutY="24.0" prefHeight="72.0" prefWidth="206.0" styleClass="textfield" stylesheets="@home_design.css" />
+                        <TextField fx:id="id_txt2" editable="false" layoutX="309.0" layoutY="70.0" prefHeight="25.0" prefWidth="22.0" visible="false" />
+                     </children>
+                  </AnchorPane>
+                  <ComboBox fx:id="combo_izposoja" layoutX="24.0" layoutY="10.0" onAction="#poisciCombo" prefWidth="150.0" styleClass="combo-box" stylesheets="@home_design.css" />
+                  <AnchorPane fx:id="vracilo_pane" layoutX="15.0" layoutY="43.0" prefHeight="169.0" prefWidth="768.0" visible="false">
+                     <children>
+                        <Label layoutX="26.0" layoutY="22.0" text="Oznaka:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="47.0" layoutY="70.0" text="Ime:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="oznaka_tbox" layoutX="84.0" layoutY="22.0" prefHeight="29.0" prefWidth="174.0" styleClass="textfield" stylesheets="@home_design.css" />
+                        <TextField fx:id="ime_tbox" layoutX="84.0" layoutY="69.0" prefHeight="29.0" prefWidth="174.0" styleClass="textfield" stylesheets="@home_design.css" />
+                        <ComboBox fx:id="studio_combo" layoutX="84.0" layoutY="117.0" prefHeight="28.0" prefWidth="174.0" styleClass="combo-box" stylesheets="@home_design.css" />
+                        <Label layoutX="33.0" layoutY="119.0" text="Studio:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="297.0" layoutY="120.0" text="Datum vrnitve:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="datum_vrnitve" layoutX="410.0" layoutY="117.0" prefHeight="29.0" prefWidth="206.0" styleClass="textfield" stylesheets="@home_design.css" />
+                        <Button fx:id="vrni_gumb" layoutX="651.0" layoutY="62.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="86.0" styleClass="gumb-izposoja" stylesheets="@home_design.css" text="Vrni">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="364.0" layoutY="26.0" text="Opis:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <TextArea fx:id="opis_tbox" layoutX="408.0" layoutY="25.0" prefHeight="72.0" prefWidth="206.0" styleClass="textfield" stylesheets="@home_design.css" />
+                        <TextField fx:id="id_txt" editable="false" layoutX="307.0" layoutY="68.0" prefHeight="25.0" prefWidth="22.0" visible="false" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="15.0" layoutY="256.0" prefHeight="310.0" prefWidth="794.0" stylesheets="@home_design.css">
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg-klasik" />
+               </styleClass>
+               <children>
+                  <AnchorPane fx:id="vracilo_table_pane" prefHeight="310.0" prefWidth="794.0">
+                     <children>
+                        <TableView fx:id="zaizposojo_table" layoutX="13.0" layoutY="17.0" onMouseClicked="#prikazIzbranihPodatkov2" prefHeight="277.0" prefWidth="768.0">
+                          <columns>
+                            <TableColumn fx:id="oznaka_col" prefWidth="71.0" text="Oznaka" />
+                            <TableColumn fx:id="ime_col" prefWidth="108.5" text="Ime" />
+                              <TableColumn fx:id="vrsta_col" prefWidth="130.0" text="Vrsta" />
+                              <TableColumn fx:id="studio_col" prefWidth="131.5" text="Studio" />
+                              <TableColumn fx:id="izposoja_datum_col" prefWidth="136.0" text="Datum izposoje" />
+                              <TableColumn fx:id="opis_col" prefWidth="190.0" text="Opis" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="izposoja_table_pane" prefHeight="310.0" prefWidth="794.0" visible="false">
+                     <children>
+                        <TableView fx:id="zaizposojo_table1" layoutX="13.0" layoutY="17.0" onMouseClicked="#prikazIzbranihPodatkov" prefHeight="277.0" prefWidth="768.0">
+                           <columns>
+                              <TableColumn fx:id="oznaka_col1" prefWidth="71.0" text="Oznaka" />
+                              <TableColumn fx:id="ime_col1" prefWidth="161.5" text="Ime" />
+                              <TableColumn fx:id="vrsta_col1" prefWidth="128.5" text="Vrsta" />
+                              <TableColumn fx:id="studio_col1" prefWidth="121.0" text="Studio" />
+                              <TableColumn fx:id="opis_col1" prefWidth="285.0" text="Opis" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="oprema_pane" layoutX="72.0" layoutY="7.0" prefHeight="588.0" prefWidth="822.0" visible="false">
          <children>
-            <Label text="Oprema" />
+            <AnchorPane layoutX="14.0" layoutY="10.0" prefHeight="210.0" prefWidth="794.0" stylesheets="@home_design.css" AnchorPane.rightAnchor="14.0">
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg-klasik" />
+               </styleClass>
+               <children>
+                  <TextField fx:id="text_oznaka" layoutX="81.0" layoutY="23.0" prefHeight="29.0" prefWidth="144.0" styleClass="textfield" stylesheets="@home_design.css" />
+                  <Label fx:id="lo" layoutX="25.0" layoutY="26.0" prefHeight="21.0" prefWidth="56.0" stylesheets="@home_design.css" text="Oznaka:">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <Label fx:id="li" layoutX="45.0" layoutY="81.0" prefHeight="21.0" prefWidth="34.0" stylesheets="@home_design.css" text="Ime:">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <Label fx:id="lv" layoutX="35.0" layoutY="140.0" prefHeight="21.0" prefWidth="47.0" stylesheets="@home_design.css" text="Vrsta:">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <TextField fx:id="text_ime" layoutX="79.0" layoutY="77.0" prefHeight="29.0" prefWidth="144.0" styleClass="textfield" stylesheets="@home_design.css" />
+                  <Button fx:id="btn_vstavi" layoutX="656.0" layoutY="12.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="115.0" styleClass="gumb-izposoja" stylesheets="@home_design.css" text="Vstavi">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
+                  <Button fx:id="btn_posodobi" layoutX="656.0" layoutY="63.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="115.0" styleClass="gumb-izposoja" stylesheets="@home_design.css" text="Posodobi" />
+                  <Label fx:id="lop" layoutX="284.0" layoutY="37.0" prefHeight="21.0" prefWidth="38.0" stylesheets="@home_design.css" text="Opis:">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <TextField fx:id="text_opis" layoutX="328.0" layoutY="28.0" prefHeight="25.0" prefWidth="120.0" styleClass="textfield" stylesheets="@home_design.css" />
+                  <Button fx:id="btn_clear" layoutX="656.0" layoutY="114.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="115.0" styleClass="gumb-izposoja" stylesheets="@home_design.css" text="Izprazni" />
+                  <Button fx:id="btn_izbrisi" layoutX="656.0" layoutY="161.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="115.0" styleClass="gumb-izposoja" stylesheets="@home_design.css" text="Izbriši" />
+                  <Label fx:id="error_oznaka" layoutX="26.0" layoutY="55.0" prefHeight="16.0" prefWidth="198.0" textFill="RED" />
+                  <Label fx:id="error_ime" layoutX="26.0" layoutY="112.0" prefHeight="16.0" prefWidth="198.0" textFill="RED" />
+                  <Label fx:id="error_vrsta" layoutX="29.0" layoutY="171.0" prefHeight="16.0" prefWidth="198.0" textFill="RED" />
+                  <ComboBox fx:id="combo_vrsta" layoutX="80.0" layoutY="136.0" prefHeight="30.0" prefWidth="144.0" styleClass="combo-box" stylesheets="@home_design.css" visibleRowCount="50" />
+                  <Button fx:id="btn_dodaj" layoutX="225.0" layoutY="136.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="71.0" styleClass="gumb-izposoja" stylesheets="@home_design.css" text="Dodaj" />
+                  <AnchorPane layoutX="495.0" layoutY="30.0" prefHeight="119.0" prefWidth="120.0" stylesheets="@home_design.css">
+                     <styleClass>
+                        <String fx:value="white-bg-klasik" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                     <children>
+                        <ImageView fx:id="img_slika" fitHeight="112.0" fitWidth="102.0" layoutX="9.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                           <styleClass>
+                              <String fx:value="white-bg-klasik" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <Button fx:id="btn" layoutX="495.0" layoutY="144.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="120.0" styleClass="gumb-izposoja" stylesheets="@home_design.css" text="Dodaj" />
+                  <Button fx:id="btn_import" layoutX="340.0" layoutY="143.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="115.0" styleClass="gumb-izposoja" stylesheets="@home_design.css" text="Uvozi opremo">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="14.0" layoutY="244.0" prefHeight="336.0" prefWidth="794.0" stylesheets="@home_design.css">
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="white-bg-klasik" />
+               </styleClass>
+               <children>
+                  <TableView fx:id="tabela_studijo" layoutX="13.0" layoutY="10.0" prefHeight="318.0" prefWidth="771.0" AnchorPane.bottomAnchor="8.0" AnchorPane.rightAnchor="10.0">
+                     <columns>
+                        <TableColumn fx:id="row_oznaka" prefWidth="152.5" text="Oznaka" />
+                        <TableColumn fx:id="row_ime" prefWidth="254.5" text="Ime" />
+                        <TableColumn fx:id="row_vrsta" prefWidth="212.5" text="Vrsta" />
+                        <TableColumn fx:id="row_opis" prefWidth="149.0" text="Opis" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="pane1" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -119,7 +407,7 @@
                   </ImageView>
                </children>
             </VBox>
-            <ImageView fx:id="logout_img" fitHeight="37.0" fitWidth="37.0" layoutX="5.0" layoutY="467.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="logout_img" fitHeight="37.0" fitWidth="37.0" layoutX="5.0" layoutY="467.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0">
                <image>
                   <Image url="@lib/icons8-logout-rounded-60.png" />
                </image>

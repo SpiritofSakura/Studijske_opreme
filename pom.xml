@@ -57,6 +57,11 @@
             <artifactId>google-api-services-gmail</artifactId>
             <version>v1-rev20220404-2.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>de.jensd</groupId>
+            <artifactId>fontawesomefx-fontawesome</artifactId>
+            <version>4.7.0-9.1.2</version>
+        </dependency>
     </dependencies>
 
     <build>

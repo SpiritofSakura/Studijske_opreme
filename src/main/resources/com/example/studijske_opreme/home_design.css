@@ -3,7 +3,7 @@
     -fx-cursor: hand;
     -fx-text-fill: #fff;
     -fx-font-size: 15px;
-    -fx-font-family: "Arial";
+    -fx-font-family: "Bodoni MT";
     -fx-alignment: CENTER_LEFT;
 }
 
@@ -39,6 +39,7 @@
 .white-bg2{
     -fx-background-color: #8bcac2;
     -fx-background-radius: 15px;
+
 }
 
 
@@ -50,8 +51,8 @@
     -fx-background-color: #fff;
     -fx-border-color: linear-gradient(to right, #444857, #537e90);
     -fx-border-width: 0px 0px .8px 0px;
-    -fx-font-size: 13px;
-    -fx-font-family: "Tahoma";
+    -fx-font-size: 15px;
+    -fx-font-family: "Bodoni MT";
 }
 
 .textfield:focused{
@@ -65,8 +66,8 @@
     -fx-border-color: linear-gradient(to right, #444857, #537e90);
     -fx-border-width: .8px;
     -fx-border-radius: .5px;
-    -fx-font-size: 13px;
-    -fx-font-family: "Tahoma";
+    -fx-font-size: 15px;
+    -fx-font-family: "Bodoni MT";
 }
 
 .combo-box:focused{
@@ -80,7 +81,7 @@
     -fx-cursor: hand;
     -fx-text-fill: #fff;
     -fx-font-size: 14px;
-    -fx-font-family: "Tahoma";
+    -fx-font-family: "Bodoni MT";
 }
 
 .add-btn:hover{
@@ -93,7 +94,7 @@
     -fx-cursor: hand;
     -fx-text-fill: #fff;
     -fx-font-size: 14px;
-    -fx-font-family: "Tahoma";
+    -fx-font-family: "Bodoni MT";
 }
 
 .update-btn:hover{
@@ -106,7 +107,7 @@
     -fx-cursor: hand;
     -fx-text-fill: #fff;
     -fx-font-size: 14px;
-    -fx-font-family: "Tahoma";
+    -fx-font-family: "Bodoni MT";
 }
 
 .delete-btn:hover{
@@ -119,7 +120,7 @@
     -fx-cursor: hand;
     -fx-text-fill: #fff;
     -fx-font-size: 14px;
-    -fx-font-family: "Tahoma";
+    -fx-font-family: "Bodoni MT";
 }
 
 .clear-btn:hover{
@@ -129,34 +130,44 @@
 .table-view {
     -fx-background-color: transparent;
     -fx-padding: 0px;
-    -fx-border-color: linear-gradient(to bottom right, #2f3f89, #9231b5);
+    -fx-border-color: linear-gradient(to top left, #b4e5dd, #8bcac2);
     -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-font-size: 15px;
+    -fx-font-family: "Bodoni MT";
 
 }
 .table-view .column-header-background{
-    -fx-background-color: linear-gradient(to bottom right, #2f3f89, #9231b5);
+    -fx-background-color: linear-gradient(to top left, #b4e5dd, #8bcac2);
     -fx-background-insets: 0 0 0 0;
+    -fx-font-size: 15px;
+    -fx-background-radius: 8px;
 
 }
 .table-view .column-header, .table-view .filler{
     -fx-size:50px;
     -fx-border-width: 0 0 10 0;
     -fx-background-color:transparent;
+    -fx-font-size: 15px;
+    -fx-background-radius: 8px;
 
 }
 
 .table-view .column-header .label {
     -fx-text-fill: white ;
+    -fx-font-size: 15px;
+    -fx-background-radius: 8px;
 }
 
 
 .search{
     -fx-background-color: transparent;
     -fx-background-radius: 15px;
-    -fx-border-color: linear-gradient(to bottom right, #2f3f89, #9231b5);
+    -fx-border-color: linear-gradient(to bottom right, #8bcac2, #cdf7f2);
     -fx-border-radius: 5px 12px 5px 15px;
     -fx-border-width: 1px;
     -fx-padding: 0px 0px  0px 25px;
+    -fx-font-family: "Bodoni MT";
 }
 
 .search:focused{
@@ -180,10 +191,31 @@
 
 .label
 {
-    -fx-font-family: "Tahoma";
+    -fx-font-family: "Bodoni MT";
 }
 
 .home-page{
     -fx-background-color: linear-gradient(to top right, #fffffe, #8bcac2);
+}
+
+.gumb-izposoja{
+    -fx-background-color: linear-gradient(to top right, #b4e5dd, #8bcac2);
+    -fx-text-fill: white;
+    -fx-background-radius: 10px;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Bodoni MT";
+}
+
+.gumb-izposoja:hover{
+    -fx-background-color: #cdf7f2;
+}
+
+.default-color0.chart-pie {
+    -fx-pie-color: #8bcac2;
+}
+
+.default-color1.chart-pie {
+    -fx-pie-color: #cdf7f2;
 }
 

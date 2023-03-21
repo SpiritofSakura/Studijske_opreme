@@ -4,13 +4,25 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 
-import java.io.IOException;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
-import java.security.MessageDigest;
+import java.nio.file.Files;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import org.apache.commons.net.ftp.FTP;
+import org.apache.commons.net.ftp.FTPClient;
+
+import javax.imageio.ImageIO;
 
 public class Login implements Initializable {
 
@@ -18,7 +30,7 @@ public class Login implements Initializable {
     private Button button_vpis;
 
     @FXML
-    private Hyperlink label_register;
+    private Hyperlink label_register,pozabil_geslo ;
 
     @FXML
     private TextField text_username;
@@ -27,6 +39,8 @@ public class Login implements Initializable {
     private PasswordField geslo_text;
 
 
+    @FXML
+    private AnchorPane aktivno_form;
 
     @FXML
     private Label napacniPodatki;
@@ -36,8 +50,12 @@ public class Login implements Initializable {
 
     private String encryptedpassword = null;
     private boolean aktiven = false;
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
 
         button_vpis.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -77,6 +95,7 @@ public class Login implements Initializable {
                     } catch (NoSuchAlgorithmException e) {
                         throw new RuntimeException(e);
                     }
+                    getData.username=text_username.getText();
                     Baza.Prijava(text_username.getText(),encryptedpassword);
 
                 }
@@ -96,14 +115,23 @@ public class Login implements Initializable {
         });
 
 
-
-
-
-
+        pozabil_geslo.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                try {
+                    Main.changeScene("resetpass.fxml",800,500);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
 
 
 
     }
 
 
+
 }
+
+

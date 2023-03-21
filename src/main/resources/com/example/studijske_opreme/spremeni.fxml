@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" styleClass="anchor" stylesheets="@home_design.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.studijske_opreme.reset">
+   <children>
+      <AnchorPane layoutX="356.0" prefHeight="500.0" prefWidth="444.0" stylesheets="@home_design.css">
+         <styleClass>
+            <String fx:value="white-bg" />
+            <String fx:value="shadow" />
+         </styleClass>
+         <children>
+            <PasswordField fx:id="geslo1" layoutX="135.0" layoutY="234.0" prefHeight="33.0" prefWidth="200.0" promptText="Ponovno vnesite geslo" styleClass="textfield" stylesheets="@home_design.css">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font></PasswordField>
+            <Text layoutX="110.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Spremeni geslo">
+               <font>
+                  <Font name="Bodoni MT" size="40.0" />
+               </font>
+            </Text>
+            <Button fx:id="btn_spremeni" layoutX="135.0" layoutY="341.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" styleClass="signin-btn" stylesheets="@home_design.css" text="Spremeni">
+               <font>
+                  <Font name="Bodoni MT" size="15.0" />
+               </font></Button>
+            <Label fx:id="napacniPodatki" layoutX="135.0" layoutY="190.0" prefHeight="17.0" prefWidth="200.0" textFill="RED">
+               <font>
+                  <Font name="Bodoni MT" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="napacniPodatki1" layoutX="135.0" layoutY="274.0" prefHeight="17.0" prefWidth="200.0" textFill="RED">
+               <font>
+                  <Font name="Bodoni MT" size="13.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="geslo" layoutX="135.0" layoutY="149.0" prefHeight="33.0" prefWidth="200.0" promptText="Vnesite novo geslo" styleClass="textfield" stylesheets="@home_design.css">
+               <font>
+                  <Font name="Bodoni MT" size="12.0" />
+               </font>
+            </PasswordField>
+            <Hyperlink fx:id="domov" layoutX="335.0" layoutY="453.0" style="-fx-cursor: hand;" styleClass="text" stylesheets="@home_design.css" text="Nazaj na LogIn" />
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="295.0" fitWidth="336.0" layoutX="79.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logo.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="58.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Izposoja opreme" wrappingWidth="209.556640625">
+         <font>
+            <Font name="Bodoni MT" size="42.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

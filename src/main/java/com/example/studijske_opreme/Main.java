@@ -1,5 +1,4 @@
 package com.example.studijske_opreme;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,7 +16,10 @@ public class Main extends Application {
         stg = primaryStage;
         primaryStage.setResizable(false);
         Parent root = FXMLLoader.load(getClass().getResource("login.fxml")); //Napišeš katera stran se prva odpre ob zagonu aplikacije.
-        primaryStage.setTitle("StudioRent"); //Naslov
+        primaryStage.setTitle("Izposoja opreme"); //Naslov
+        //primaryStage.setResizable(true);
+        //primaryStage.setMinHeight(500);
+        //primaryStage.setMinWidth(800);
         primaryStage.setScene(new Scene(root, 800, 500)); //Določiš višino in širino
         primaryStage.show();
 

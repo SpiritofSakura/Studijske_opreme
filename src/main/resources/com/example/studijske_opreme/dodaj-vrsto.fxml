@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="292.0" prefWidth="414.0" styleClass="white-bg-klasik" stylesheets="@home_design.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.studijske_opreme.dodajVrsto">
+   <children>
+      <TextField fx:id="vrsta" layoutX="128.0" layoutY="109.0" prefHeight="33.0" prefWidth="158.0" promptText="Vnesite vrsto" styleClass="textfield" stylesheets="@home_design.css">
+         <font>
+            <Font name="Bodoni MT" size="12.0" />
+         </font>
+      </TextField>
+      <Text layoutX="91.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dodajte vrsto">
+         <font>
+            <Font name="Bodoni MT" size="40.0" />
+         </font>
+      </Text>
+      <Button fx:id="btn_dodaj" layoutX="107.0" layoutY="230.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="200.0" styleClass="signin-btn" stylesheets="@home_design.css" text="Dodaj">
+         <font>
+            <Font name="Bodoni MT" size="15.0" />
+         </font>
+      </Button>
+      <Label fx:id="error" layoutX="128.0" layoutY="148.0" prefHeight="17.0" prefWidth="158.0" textFill="RED">
+         <font>
+            <Font name="Bodoni MT" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="opis" layoutX="128.0" layoutY="165.0" prefHeight="33.0" prefWidth="158.0" promptText="Vnesite opis" styleClass="textfield" stylesheets="@home_design.css">
+         <font>
+            <Font name="Bodoni MT" size="12.0" />
+         </font>
+      </TextField>
+   </children>
+</AnchorPane>
